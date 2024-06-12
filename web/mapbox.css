@@ -80,6 +80,7 @@ body { margin: 0; padding: 0; }
     height: 25px; /* Высота иконки */
     background-image: url('/boat.png'); /* Фоновое изображение корабля */
     background-size: cover; /* Масштабирование фонового изображения */
+    transition: 0.1s;
 }
 
 
@@ -108,4 +109,13 @@ body { margin: 0; padding: 0; }
     padding: 10px 10px;
     margin: 0 auto;
 
+}
+
+
+#speed-controls
+{
+    position: fixed;
+    z-index: 10;
+    bottom: 10px;
+    right: calc(50% - 70px);
 }

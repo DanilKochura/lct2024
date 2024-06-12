@@ -3,7 +3,6 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia29jaHVyYWRhbmlsIiwiYSI6ImNsd3oxMnhsNDAyb20yb
 let step = 1;
 const map = new mapboxgl.Map({
     container: 'map',
-    // style: 'mapbox://styles/mapbox/standard',
     style: 'mapbox://styles/mapbox/navigation-night-v1',
     center: [105, 70],
     zoom: 3
@@ -12,26 +11,12 @@ const map = new mapboxgl.Map({
 let shipsData = [];
 let points = [];
 lines = [];
-let sheets = [
-    "03-Mar-2020",
-    "10-Mar-2020",
-    "17-Mar-2020",
-    "24-Mar-2020",
-    "31-Mar-2020",
-    "02-Apr-2020",
-    "07-Apr-2020",
-    "14-Apr-2020",
-    "21-Apr-2020",
-    "28-Apr-2020",
-    "05-May-2020",
-    "12-May-2020",
-    "19-May-2020",
-    "26-May-2020"
-];
 
-var myDate = new Date("2022-03-01T00:00:00Z");
+var myDate = new Date("2022-02-27T00:00:00Z");
 let time = 0;
 let globalTime = myDate.getTime();
+let speedMultiplier = 1; // Начальная скорость 1x
+let fps = 50;
 
 map.on('load', function () {
     const local = 'http://localhost:63342/hackathon';
@@ -78,11 +63,10 @@ map.on('load', function () {
                 });
 
                 map.on('click', `line-${edge.points[0]}-${edge.points[1]}`, function (e) {
-
                     const coordinates = e.lngLat;
                     new mapboxgl.Popup()
                         .setLngLat(coordinates)
-                        .setHTML(`<p><b>${edge.length}</b> мили</p>`)
+                        .setHTML(`<p><b>${edge.length}</b> мили</p>  (#${edge.id})`)
                         .addTo(map);
                     if (lines[`line-${edge.points[0]}-${edge.points[1]}`] === 1) {
                         lines[`line-${edge.points[0]}-${edge.points[1]}`] = 0
@@ -134,13 +118,8 @@ map.on('load', function () {
                     19, '#669EC4',
                     20, '#3BB3C3',
                     24, '#55c0ce',
-                    // 0, 'rgba(1,16,14,0.1)',
-                    // 10, '#5d0a25',
-                    // 15, 'rgb(246,192,192)',
-                    // 20, '#3BB3C3',
                 ],
                 'fill-opacity': 0.1
-                // 'fill-opacity': 0.5
             },
             layout: {
                 'visibility': i === 0 ? 'visible' : 'none'
@@ -152,62 +131,58 @@ map.on('load', function () {
     time = 0;
 
     function toggleIceDensity() {
-        myDate = new Date(myDate.getTime() + 60 * 60 * 1000);
-        globalTime += 60 * 60 * 1000;
+        myDate = new Date(myDate.getTime() + 60 * 1000 * speedMultiplier);
+        globalTime += 60 * 1000 * speedMultiplier;
         let date = myDate.toISOString().split('T');
         $('#timer-date').text(date[0] + ' ' + myDate.getHours() + ':' + myDate.getMinutes());
 
-        if (time + 60 * 60 * 1000 === 7 * 24 * 60 * 60 * 1000) {
+        if (time + 60 * 1000 * speedMultiplier === 7 * 24 * 60 * 60 * 1000) {
             time = 0;
             const nextIndex = (currentIceDensityIndex + 1) % 10;
             map.setLayoutProperty(`ice-density-layer-${currentIceDensityIndex}`, 'visibility', 'none');
             map.setLayoutProperty(`ice-density-layer-${nextIndex}`, 'visibility', 'visible');
             currentIceDensityIndex = nextIndex;
         } else {
-            time += 60 * 60 * 1000;
+            time += 60 * 1000 * speedMultiplier;
         }
     }
 
-    setInterval(toggleIceDensity, 1000);
+    setInterval(toggleIceDensity, fps);
 
-    var markers = [
-        {coordinates: [69.9, 179], color: 'red'},
-        {coordinates: [69.5, 33.75], color: 'red'},
-        {coordinates: [77.3, 67.7], color: 'red'},
-        {coordinates: [74.6, 63.9], color: 'red'}
-    ];
-
-    markers.forEach(function (marker) {
-        const shipIcon = document.createElement('div');
-        shipIcon.className = 'icebreaker-icon';
-        new mapboxgl.Marker(shipIcon)
-            .setLngLat(marker.coordinates.reverse())
-            .addTo(map);
-    });
+    // var markers = [
+    //     {coordinates: [69.9, 179], color: 'red'},
+    //     {coordinates: [69.5, 33.75], color: 'red'},
+    //     {coordinates: [77.3, 67.7], color: 'red'},
+    //     {coordinates: [74.6, 63.9], color: 'red'}
+    // ];
+    //
+    // markers.forEach(function (marker) {
+    //     const shipIcon = document.createElement('div');
+    //     shipIcon.className = 'icebreaker-icon';
+    //     new mapboxgl.Marker(shipIcon)
+    //         .setLngLat(marker.coordinates.reverse())
+    //         .addTo(map);
+    // });
 });
 
 class Ship {
-    constructor(map, route, name, speed, startTime) {
+    constructor(map, route, name, speed, startTime, type) {
         this.map = map;
         this.route = route.map(point => ({ ...point, time: new Date(point.date).getTime() }));
         this.name = name;
-        this.speed = speed; // узлы
-        this.startTime = new Date(startTime).getTime(); // Время старта корабля в миллисекундах
+        this.speed = speed;
+        this.startTime = new Date(startTime).getTime();
         this.currentPosition = 0;
 
-        // Создаем элемент HTML для иконки корабля
         const shipIcon = document.createElement('div');
-        shipIcon.className = 'ship-icon'; // Задайте стили для иконки в CSS
+        shipIcon.className = type === "ice" ? 'icebreaker-icon' : 'ship-icon';
 
-        // Добавляем иконку корабля на карту
         this.shipFeature = new mapboxgl.Marker(shipIcon)
             .setLngLat(route[0].coords)
             .setPopup(new mapboxgl.Popup().setHTML(`<h3>${name}</h3><p>Скорость ${speed} узлов</p>`))
             .addTo(map);
 
         $.SOW.core.toast.show('success', '',`Корабль ${name} начал плавание`, 'top-right', 4000, true);
-        console.log(`Корабль ${name} начал плавание`); // Вывод сообщения в консоль
-
         this.animate();
     }
 
@@ -224,7 +199,6 @@ class Ship {
             const currentTime = globalTime;
             let segmentIndex = -1;
 
-            // Найти текущий сегмент маршрута
             for (let i = 0; i < pathLength - 1; i++) {
                 if (currentTime >= this.route[i].time && currentTime < this.route[i + 1].time) {
                     segmentIndex = i;
@@ -233,9 +207,8 @@ class Ship {
             }
 
             if (segmentIndex === -1) {
-                // Корабль достиг конечной точки маршрута
                 this.shipFeature.setLngLat(this.route[pathLength - 1].coords);
-                this.updateStatus("завершено")
+                this.updateStatus("завершено");
                 return;
             }
 
@@ -249,29 +222,30 @@ class Ship {
             this.shipFeature.setLngLat(currentCoords);
 
             this.animationFrameId = requestAnimationFrame(animateStep);
-        }   ;
+        };
 
         this.animationFrameId = requestAnimationFrame(animateStep);
     }
 
     updateStatus(newStatus) {
         this.status = newStatus;
-        updateShipStatus(); // Обновляем список кораблей
+        updateShipStatus();
     }
+
     destroy() {
-        cancelAnimationFrame(this.animationFrameId); // Отменяем анимацию
-        this.shipFeature.remove(); // Удаляем маркер с карты
+        cancelAnimationFrame(this.animationFrameId);
+        this.shipFeature.remove();
     }
 }
 
 function loadShips() {
     $.ajax({
-        url: '/ships.json',
+        url: '/ships_all.json',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
             shipsData = data;
-            checkAndStartShips(); // Обновляем список кораблей после загрузки данных
+            checkAndStartShips();
         },
         error: function (xhr, status, error) {
             console.error('Ошибка при загрузке данных о кораблях:', error);
@@ -281,39 +255,39 @@ function loadShips() {
 
 function checkAndStartShips() {
     shipsData.forEach(ship => {
-        // console.log(new Date(globalTime).toJSON(),ship.date, new Date(ship.date).toJSON() )
-        let date = ship.date
-        ship.date = new Date(date).getTime()
+        let date = ship.date;
+        ship.date = new Date(date).getTime();
         if (!ship.started && new Date(ship.date) <= new Date(globalTime)) {
             ship.started = true;
-            const route = ship.route; // Получаем маршрут корабля
-            const shipInstance = new Ship(map, route, ship.name, ship.speed, ship.date);
+            const route = ship.route;
+            if (!ship.type) ship.type = "no";
+            const shipInstance = new Ship(map, route, ship.name, ship.speed, ship.date, ship.type);
             shipInstance.animate();
         }
     });
-    updateShipStatus(); // Обновление статуса кораблей
+    updateShipStatus();
 }
 
 function updateShipStatus() {
     const shipStatusList = $('#ship-status-list');
-    shipStatusList.empty(); // Очистка списка перед обновлением
+    shipStatusList.empty();
 
     shipsData.forEach(ship => {
         let status = 'ожидает отплытия';
-        let span = '<span class="ml-2 badge bg-secondary-soft">ожидает</span>'
+        let span = '<span class="ml-2 badge bg-secondary-soft">ожидает</span>';
         if (ship.started) {
             const lastPoint = ship.route[ship.route.length - 1];
             if (globalTime >= new Date(lastPoint.date).getTime()) {
                 status = 'завершено';
-                span = '<span class="ml-2 badge bg-danger-soft">завершено</span>'
+                span = '<span class="ml-2 badge bg-danger-soft">завершено</span>';
             } else {
                 status = 'в пути';
-                span = '<span class="ml-2 badge bg-success-soft">в пути</span>'
+                span = '<span class="ml-2 badge bg-success-soft">в пути</span>';
             }
         }
         const listItem = $('<li></li>');
-        listItem.text(ship.name+'   ');
-        listItem.append(span)
+        listItem.text(ship.name + ' ');
+        listItem.append(span);
         shipStatusList.append(listItem);
     });
 }
@@ -325,5 +299,36 @@ $(document).ready(function () {
     $('#menu-toggle').click(function () {
         $('#floating-menu').toggleClass('collapsed');
         $(this).toggleClass('collapsed');
+    });
+
+    // Изменение глобального таймера с учетом множителя скорости
+    setInterval(() => {
+        myDate = new Date(myDate.getTime() + 60 * 1000 * speedMultiplier);
+        globalTime += 60 * 1000 * speedMultiplier;
+        let date = myDate.toISOString().split('T');
+        $('#timer-date').text(date[0] + ' ' + myDate.getHours() + ':' + myDate.getMinutes());
+    }, fps);
+
+    // Обработчики для кнопок изменения скорости
+    $('#speed-1x').click(() => {
+        speedMultiplier = 1
+        $('.btn-speed').removeClass('btn-dark')
+        $('#speed-1x').addClass('btn-dark')
+    });
+    $('#speed-2x').click(() => {
+        speedMultiplier = 2
+        $('.btn-speed').removeClass('btn-dark')
+        $('#speed-2x').addClass('btn-dark')
+    });
+    $('#speed-5x').click(() => {
+        speedMultiplier = 5
+        $('.btn-speed').removeClass('btn-dark')
+        $('#speed-5x').addClass('btn-dark')
+    });
+    $('#speed-10x').click(() => {
+        speedMultiplier = 10
+        $('.btn-speed').removeClass('btn-dark')
+        $('#speed-10x').addClass('btn-dark')
+
     });
 });
