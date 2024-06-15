@@ -53,7 +53,7 @@ def get_dots_sector(dot):
             min_distance_sector_x = sector_x
             min_distance_sector_y = sector_y
 
-        # Возвраащаем значения широты и долготы
+        # Возвращаем значения широты и долготы
     return min_distance_sector_y, min_distance_sector_x
 
 
