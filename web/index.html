@@ -8,6 +8,7 @@
     <link href='/css/mapbox-gl.css' rel='stylesheet' />
     <script src="/js/turf.min.js"></script>
     <link href="/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/vendor_bundle.min.css" rel="stylesheet">
 
     <link href="/css/core.min.css" rel="stylesheet">
     <link href="/mapbox.css" rel="stylesheet">
@@ -46,8 +47,72 @@
 <div id="timer">
     <p id="timer-date"></p>
 </div>
+<div id="bottom-left-buttons">
+    <button type="button" class="btn btn-sm rounded-circle btn-light">
+        <i class="fi fi-cog-full"></i>
+    </button>
+    <a type="button" class="btn btn-sm rounded-circle btn-light fancybox"  href="gant.png">
+        <i class="fi fi-squared-graph"></i>
+    </a>
+    <a type="button" class="btn btn-sm rounded-circle btn-light" href="gant_individual.pdf" target="_blank">
+        <i class="fi fi-arrow-download"></i>
+    </a>
+
+</div>
+<div class="modal fade" id="exampleModalSm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelSm" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelSm">Просмотр маршрута судна</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <ul class="sow-timeline">
+
+                    <li>
+                        <h3 class="mb-5" id="ship_map_title">
+
+                        </h3>
+                    </li>
+
+                    <li class="pb-5">
+
+                        <h4 class="sow-timeline-title fw-light mb-0 position-relative d-flex align-items-center">
+                            Simple is more?
+                        </h4>
+                        <small class="text-muted">Tue Nov 10, 2022</small>
+
+                        <div class="mt-4">
+                            <p>
+
+                            </p>
+                        </div>
 
 
+                    </li>
+
+                    <li class="pb-5">
+
+                        <h4 class="sow-timeline-title fw-light mb-0 position-relative d-flex align-items-center">
+                            What is simple?
+                        </h4>
+                        <small class="text-muted">Tue Nov 10, 2022</small>
+
+                        <div class="mt-4">
+
+                        </div>
+
+                    </li>
+
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script>

@@ -3,7 +3,7 @@ body { margin: 0; padding: 0; }
 #floating-menu {
     position: absolute;
     top: 20px;
-    width: 300px;
+    width: 350px;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 0 10px 10px 0; /* Скругляем правый верхний и нижний углы */
@@ -49,7 +49,7 @@ body { margin: 0; padding: 0; }
     transition: left 0.3s ease; /* Анимация движения */
 }
 #floating-menu.collapsed {
-    left: -290px; /* Полностью скрываем меню за левым краем */
+    left: -340px; /* Полностью скрываем меню за левым краем */
 }
 #menu-toggle span {
     transition: transform 0.3s ease; /* Анимация поворота */
@@ -99,6 +99,7 @@ body { margin: 0; padding: 0; }
     bottom: 10px;
     background-color: white;
     border-radius: 20px;
+    z-index: 10;
 }
 
 #timer-date
@@ -118,4 +119,53 @@ body { margin: 0; padding: 0; }
     z-index: 10;
     bottom: 10px;
     right: calc(50% - 70px);
+}
+
+.round-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: #0061c9;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.round-button svg {
+    width: 20px; /* Увеличенный размер SVG иконки */
+    height: 20px; /* Увеличенный размер SVG иконки */
+    fill: white;
+}
+
+#bottom-left-buttons {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    /*gap: 10px;*/
+    z-index: 10;
+}
+
+#bottom-left-buttons .round-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background-color: #0061c9;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#bottom-left-buttons .round-button svg {
+    width: 20px; /* Увеличенный размер SVG иконки */
+    height: 20px; /* Увеличенный размер SVG иконки */
+    fill: white;
 }
