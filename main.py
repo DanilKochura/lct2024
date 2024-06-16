@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import pymysql
 import json
 
@@ -80,6 +80,47 @@ def get_points_and_edges():
     return json.dumps({'points': pts, 'edges': edges})
 
 
+# Заготовить логику для обработки формы:
+# Маршрут /api/refresh-routes
+# POST-запрос
+# Логика: для всех current-судов данные обновляются (поиск по id)
+# Все суда extended добавляются в базу
+# Формат данных
+#
+# Если поля статус нет, то статус = 0
+@app.route("/api/refresh-routes", methods=["POST"])
+def refresh_routes():
+    updates = request.form
+    current = updates["current"]
+    extended = updates["extended"]
+
+    conn = pymysql.connect(host='localhost', user='admin_admin', password='Admin1234', database='admin_lct')
+    with conn.cursor() as cursor:
+        for ship in current:  # Для старых кораблей обновляем данные.
+            query = f"""
+                UPDATE 
+                    schedules 
+                SET 
+                    ship_name={ship['name']}, 
+                    velocity={ship['speed']}, 
+                    start_point_id={ship['from']}, 
+                    end_point_id={ship['to']}, 
+                    ice_class={ship['ice_class']}, 
+                    date_start={ship['date']},
+                    status={ship.get('status', 0)} 
+                WHERE 
+                    id={ship['id']}
+            """
+            cursor.execute(query)
+
+        for ship in extended:  # Новые корабли заносим в базу.
+            query = f"""
+                INSERT INTO schedules (ship_name, ice_class, velocity, start_point_id, end_point_id, date_start, status) 
+                VALUES ({ship['name']}, {ship['ice_class']}, {ship['speed']}, {ship['from']}, {ship['to']}, {ship['date']}, {ship.get('status', 0)})
+            """
+            cursor.execute(query)
+
+    conn.close()
 
 
 
