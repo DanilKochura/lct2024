@@ -90,12 +90,10 @@ def get_points_and_edges():
 # Если поля статус нет, то статус = 0
 @app.route("/api/refresh-routes", methods=['POST', 'GET'])
 def refresh_routes():
-    updates = request.form
     print("request.form: ", request.form)
-    current = parse_form(data=request.form)
-    extended = []
+    current, extended = parse_form(data=request.form)
     print("parse_form(data=request.form): ", parse_form(data=request.form))
-    conn = pymysql.connect(host='localhost', user='root', password='tester', database='admin_lct')
+    conn = pymysql.connect(host='localhost', user='admin_admin', password='Admin1234', database='admin_lct')
     with conn.cursor() as cursor:
         for ship in current:  # Для старых кораблей обновляем данные.
             query = f"""
@@ -112,14 +110,16 @@ def refresh_routes():
                 WHERE 
                     id={ship['id']}
             """
-            print(query)
+            # print(query)
             cursor.execute(query)
 
         for ship in extended:  # Новые корабли заносим в базу.
+            print("ship", ship)
             query = f"""
                 INSERT INTO schedules (ship_name, ice_class, velocity, start_point_id, end_point_id, date_start, status) 
                 VALUES ("{ship['name']}", "{ship['ice_class']}", {ship['speed']}, {ship['from']}, {ship['to']}, "{ship['date']}", {ship.get('status', 0)})
             """
+            print("query", query)
             cursor.execute(query)
     conn.commit()
     conn.close()
@@ -127,20 +127,36 @@ def refresh_routes():
 
 
 def parse_form(data):
-    # Преобразование списка кортежей в массив словарей
-    pattern = re.compile(r'current\[(\d+)\]\[(.*?)\]')
-    data_dict = {}
+    # Преобразовываем кривой формат, в котором фронт отдаёт формы, во что-то адекватное.
 
+    pattern = re.compile(r'current\[(\d+)\]\[(.*?)\]')
+    data_dict_current = {}
     for key, value in data.items():
         match = pattern.search(key)
         if match:
             index = int(match.group(1))
             dict_key = match.group(2)
-            if index not in data_dict:
-                data_dict[index] = {}
-            data_dict[index][dict_key] = value
+            if index not in data_dict_current:
+                data_dict_current[index] = {}
+            data_dict_current[index][dict_key] = value
+    current = [data_dict_current[index] for index in sorted(data_dict_current.keys())]
 
-    return [data_dict[index] for index in sorted(data_dict.keys())]
+    pattern = re.compile(r'extended\[(\d+)\]\[(.*?)\]')
+    data_dict_extended = {}
+    for key, value in data.items():
+        match = pattern.search(key)
+        if match:
+            index = int(match.group(1))
+            dict_key = match.group(2)
+            if index not in data_dict_extended:
+                data_dict_extended[index] = {}
+            data_dict_extended[index][dict_key] = value
+    extended = [data_dict_extended[index] for index in sorted(data_dict_extended.keys())]
+
+    return current, extended
+
+
+
 
 # def parse_form(data):
 #     result = {}

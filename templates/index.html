@@ -319,7 +319,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-6 form-label-group mb-3">
-                        <select class="form-control" name="extended[$][from]">
+                        <select class="form-control" data-cloned-replace-name="extended[$][from]">
                             {% for point in pts %}
                                 <option value="{{ point['id'] }}"
                                 >{{ point['point_name'] }}</option>
@@ -329,7 +329,7 @@
                     </div>
 
                     <div class="col-12 col-md-6 form-label-group mb-3">
-                        <select class="form-control" name="extended[$][to]">
+                        <select class="form-control" data-cloned-replace-name="extended[$][to]">
                             {% for point in pts %}
                                 <option value="{{ point['id'] }}"
                                 >{{ point['point_name'] }}</option>
