@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Академики в отпуске</title>
+    <script src='static/js/mapbox-gl.js'></script>
+    <link href='static/css/mapbox-gl.css' rel='stylesheet'/>
+    <script src="static/js/turf.min.js"></script>
+    <link href="static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/vendor_bundle.min.css" rel="stylesheet">
+
+    <link href="static/css/core.min.css" rel="stylesheet">
+    <link href="static/css/mapbox.css" rel="stylesheet">
+    <link rel="icon" href="static/favicon.ico">
+</head>
+<body class="aside-sticky aside-float header-sticky header-fixed">
+<div id="wrapper">
+    <div id="map"></div>
+    <div id="floating-menu" class="collapsed">
+        <h2>Список судов</h2>
+        <ul id="ship-status-list"></ul>
+    </div>
+    <div id="menu-toggle" class="collapsed">
+        <span>&#9664;</span>
+    </div>
+    <div id="speed-controls" style="">
+        <button id="speed-1x" class="btn btn-sm btn-light btn-speed">
+            1x
+            <svg width="18px" height="18px" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                 class="bi bi-skip-forward-fill" viewBox="0 0 16 16">
+                <path d="M15.5 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V8.753l-6.267 3.636c-.54.313-1.233-.066-1.233-.697v-2.94l-6.267 3.636C.693 12.703 0 12.324 0 11.693V4.308c0-.63.693-1.01 1.233-.696L7.5 7.248v-2.94c0-.63.693-1.01 1.233-.696L15 7.248V4a.5.5 0 0 1 .5-.5z"></path>
+            </svg>
+        </button>
+        <!--    <button id="speed-2x"><svg width="18px" height="18px" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-skip-forward-fill" viewBox="0 0 16 16">-->
+        <!--        <path d="M15.5 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V8.753l-6.267 3.636c-.54.313-1.233-.066-1.233-.697v-2.94l-6.267 3.636C.693 12.703 0 12.324 0 11.693V4.308c0-.63.693-1.01 1.233-.696L7.5 7.248v-2.94c0-.63.693-1.01 1.233-.696L15 7.248V4a.5.5 0 0 1 .5-.5z"></path>-->
+        <!--    </svg>2x</button>-->
+        <button id="speed-5x" class="btn btn-sm btn-light btn-speed">
+            5x
+            <svg width="18px" height="18px" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                 class="bi bi-skip-forward-fill" viewBox="0 0 16 16">
+                <path d="M15.5 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V8.753l-6.267 3.636c-.54.313-1.233-.066-1.233-.697v-2.94l-6.267 3.636C.693 12.703 0 12.324 0 11.693V4.308c0-.63.693-1.01 1.233-.696L7.5 7.248v-2.94c0-.63.693-1.01 1.233-.696L15 7.248V4a.5.5 0 0 1 .5-.5z"></path>
+            </svg>
+        </button>
+        <button id="speed-10x" class="btn btn-sm btn-light btn-speed">
+            10x
+            <svg width="18px" height="18px" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                 class="bi bi-skip-forward-fill" viewBox="0 0 16 16">
+                <path d="M15.5 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V8.753l-6.267 3.636c-.54.313-1.233-.066-1.233-.697v-2.94l-6.267 3.636C.693 12.703 0 12.324 0 11.693V4.308c0-.63.693-1.01 1.233-.696L7.5 7.248v-2.94c0-.63.693-1.01 1.233-.696L15 7.248V4a.5.5 0 0 1 .5-.5z"></path>
+            </svg>
+        </button>
+    </div>
+    <div id="timer">
+        <p id="timer-date"></p>
+    </div>
+    <div id="bottom-left-buttons">
+        <a type="button" href="#aside-main" class="btn btn-sm rounded-circle btn-light  btn-sidebar-toggle">
+            <i class="fi fi-cog-full"></i>
+        </a>
+        <a type="button" class="btn btn-sm rounded-circle btn-light fancybox" href="/static/gant.png">
+            <i class="fi fi-squared-graph"></i>
+        </a>
+        <a type="button" class="btn btn-sm rounded-circle btn-light" href="/static/gant_individual.pdf" target="_blank">
+            <i class="fi fi-arrow-download"></i>
+        </a>
+
+    </div>
+    <div class="modal fade" id="exampleModalSm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelSm"
+         aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelSm">Просмотр маршрута судна</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <ul class="sow-timeline">
+
+                        <li>
+                            <h3 class="mb-5" id="ship_map_title">
+
+                            </h3>
+                        </li>
+
+                        <li class="pb-5">
+
+                            <h4 class="sow-timeline-title fw-light mb-0 position-relative d-flex align-items-center">
+                                Simple is more?
+                            </h4>
+                            <small class="text-muted">Tue Nov 10, 2022</small>
+
+                            <div class="mt-4">
+                                <p>
+
+                                </p>
+                            </div>
+
+
+                        </li>
+
+                        <li class="pb-5">
+
+                            <h4 class="sow-timeline-title fw-light mb-0 position-relative d-flex align-items-center">
+                                What is simple?
+                            </h4>
+                            <small class="text-muted">Tue Nov 10, 2022</small>
+
+                            <div class="mt-4">
+
+                            </div>
+
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<aside id="aside-main"
+       class=" aside-end bg-light aside-hide-xs d-flex align-items-stretch justify-content-lg-between align-items-start flex-column">
+
+
+    <!--
+        OPTIONAL LOGO
+        visibility : desktop only
+        .d-none + .d-sm-block
+    -->
+    <div class="clearfix px-3 py-4 mb-1 text-center bg-diff d-d">
+        <i class="fi fi-mollecules fs-1"></i>
+        <h2 class="h5">Управление заявками</h2>
+    </div>
+    <!-- /LOGO -->
+
+
+    <div class="aside-wrapper scrollable-vertical scrollable-styled-light align-self-baseline h-100 w-100">
+        <form action="api/refresh-routes" method="post" id="refresh_requests" enctype="application/x-www-form-urlencoded">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- clone container (items are pushed here) -->
+                        <div id="clone_group_list" class="row sortable">
+                            <div class="accordion" id="accordionShadow">
+
+                                <div class="card mb-2">
+                                    <div class="card-header mb-0 p-0 border-0 bg-transparent" id="cleanHeadingOne">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link w-100 btn-lg text-align-start text-decoration-none text-dark"
+                                                    type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#shadowCollapseOne" aria-expanded="false"
+                                                    aria-controls="shadowCollapseOne">
+                                                Старые заявки
+                                                <span class="group-icon float-end">
+						<i class="fi fi-arrow-start-slim"></i>
+						<i class="fi fi-arrow-down-slim"></i>
+					</span>
+                                            </button>
+                                        </h2>
+                                    </div>
+
+                                    <div id="shadowCollapseOne" class="collapse" aria-labelledby="cleanHeadingOne"
+                                         data-bs-parent="#accordionShadow">
+                                        <div class="card-body">
+                                        {{ ships[0] }}
+                                            {% for ship in ships %}
+                                                <div class="col-12 mt-3 py-3 rounded">
+
+                                                    <div class="border border-primary rounded border-dashed p-3">
+
+                                                        <!-- header -->
+                                                        <div class="d-flex align-items-center justify-content-lg-between mb-3 sortable-handle">
+                                                            <!-- on/off -->
+                                                            <label class="d-flex align-items-center">
+                                                                <input class="d-none-cloaked" type="checkbox" value="1"
+                                                                       name="current[{{ ship['id'] }}][status]" checked>
+                                                                <i class="switch-icon switch-icon-primary"></i>
+                                                                <span class="px-3 user-select-none">Используется</span>
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-6 form-label-group mb-3">
+                                                                <input type="text" placeholder="Group Name"
+                                                                       class="form-control"
+                                                                       name="current[{{ ship['id'] }}][name]"
+                                                                       value="{{ ship['ship_name'] }}">
+                                                                <label>Название</label>
+                                                            </div>
+                                                            <input type="hidden" placeholder="Group Name"
+                                                                   class="form-control"
+                                                                   name="current[{{ ship['id'] }}][id]"
+                                                                   value="{{ ship['id'] }}">
+                                                            <div class="col-12 col-md-6 form-label-group mb-3">
+                                                                <input type="text" placeholder="Group Name"
+                                                                       class="form-control"
+                                                                       name="current[{{ ship['id'] }}][speed]"
+                                                                       value="{{ ship['velocity'] }}">
+                                                                <label>Скорость (в узлах)</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-6 form-label-group mb-3">
+                                                                <select class="form-control"
+                                                                        name="current[{{ ship['id'] }}][from]">
+                                                                    {% for point in pts %}
+                                                                        <option value="{{ point['id'] }}"
+                                                                                {% if point['id'] == ship['start_point_id'] %}selected{% endif %}>{{ point['point_name'] }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <label>Отправление</label>
+                                                            </div>
+
+                                                            <div class="col-12 col-md-6 form-label-group mb-3">
+                                                                <select class="form-control"
+                                                                        name="current[{{ ship['id'] }}][to]">
+                                                                    {% for point in pts %}
+                                                                        <option value="{{ point['id'] }}"
+                                                                                {% if point['id'] == ship['end_point_id'] %}selected{% endif %}>{{ point['point_name'] }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <label>Прибытие</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-6 form-label-group mb-3">
+                                                                <select class="form-control"
+                                                                        name="current[{{ ship['id'] }}][ice_class]">
+                                                                    {% for class in ["нет", "Arc 4", "Arc 5", "Arc 7"] %}
+                                                                        <option value="{{ class }}"
+                                                                                {% if class == ship['ice_class'] %}selected{% endif %}>
+                                                                            {{ class }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <label>Ледовый класс</label>
+                                                            </div>
+                                                            <div class="col-12 col-md-6 form-label-group mb-3">
+                                                                <input type="date" placeholder="Group Name"
+                                                                       class="form-control"
+                                                                       min="28-02-2022"
+                                                                       max="28-07-2022"
+                                                                       name="current[{{ ship['id'] }}][date]"
+                                                                       value="{{ ship['date_start'] }}">
+                                                                <label>Дата</label>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- clone trigger -->
+                        <div class="mt-3">
+                            <a href="#"
+                               data-clone-target="#configurator_tpl>div"
+                               data-clone-destination="#clone_group_list"
+                               data-clone-limit="4"
+                               class="sow-util-cloner btn btn-primary">
+                                Добавить заявку
+                            </a>
+                        </div>
+                        <div class="float-end">
+                            <button class="btn btn-success" type="submit">Отправить</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div id="configurator_tpl" class="hide">
+
+        <div class="col-12 mt-3 py-3 rounded">
+
+            <div class="border border-primary rounded border-dashed p-3">
+
+                <!-- header -->
+                <div class="d-flex align-items-center justify-content-lg-between mb-3 sortable-handle">
+
+                    <!-- on/off -->
+                    <label class="d-flex align-items-center">
+                        <input class="d-none-cloaked" type="checkbox" value="1"
+                               data-cloned-replace-name="extended[$][status]"
+                               checked>
+                        <i class="switch-icon switch-icon-primary"></i>
+                        <span class="px-3 user-select-none">Используется</span>
+                    </label>
+
+                    <!-- remove button -->
+                    <a href="#" class="sow-util-cloner close mt-n1" data-clone-target="#clone_group_list" tabindex="-1">
+                        <i class="fi fi-close small m-0"></i>
+                    </a>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-6 form-label-group mb-3">
+                        <input type="text" placeholder="Group Name" class="form-control"
+                               data-cloned-replace-name="extended[$][name]" value="">
+                        <label>Название</label>
+                    </div>
+
+                    <div class="col-12 col-md-6 form-label-group mb-3">
+                        <input type="text" placeholder="Group Name" class="form-control"
+                               data-cloned-replace-name="extended[$][speed]" value="">
+                        <label>Скорость (в узлах)</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 form-label-group mb-3">
+                         <select class="form-control" data-cloned-replace-name="extended[$][from]">
+                            {% for point in pts %}
+                                <option value="{{ point['id'] }}"
+                                >{{ point['point_name'] }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Отправление</label>
+                    </div>
+
+                    <div class="col-12 col-md-6 form-label-group mb-3">
+                        <select class="form-control" data-cloned-replace-name="extended[$][to]">
+                            {% for point in pts %}
+                                <option value="{{ point['id'] }}"
+                                >{{ point['point_name'] }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Прибытие</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 form-label-group mb-3">
+                        <select class="form-control" data-cloned-replace-name="extended[$][ice_class]">
+                            {% for class in ["нет", "Arc4", "Arc5", "Arc7"] %}
+                                <option value="{{ class }}"
+                                >
+                                    {{ class }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Ледовый класс</label>
+                    </div>
+                    <div class="col-12 col-md-6 form-label-group mb-3">
+                        <input type="date" placeholder="Group Name" class="form-control"
+                               data-cloned-replace-name="extended[$][date]" value="">
+                        <label>Дата</label>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</aside>
+
+<script src="static/js/core.min.js"></script>
+<script src="static/js/vendor_bundle.min.js"></script>
+<script src="static/js/mapbox.js"></script>
+
+</body>
+</html>
