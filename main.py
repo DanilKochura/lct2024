@@ -23,7 +23,7 @@ def get_points_and_schedules():
         schema = [column[0] for column in cursor.description]
         for row in cursor.fetchall():
             row = dict(zip(schema, row))
-            ships.append(row)  # TODO Проверить работоспособность
+            ships.append(row)
 
     # Получение точек
     pts = []
