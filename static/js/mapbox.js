@@ -58,7 +58,7 @@ let fps = 50;
 
 map.on('load', function () {
     const local = 'http://localhost:63342/hackathon';
-    fetch(/*local+*/'/api/getGraph.php')
+    fetch(/*local+*/'/api/getGraph')
         .then(response => response.json())
         .then(graphData => {
             graphData.points.forEach(point => {
