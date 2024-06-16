@@ -7,7 +7,38 @@ app = Flask(__name__)
 
 @app.route('/')
 def main_processor():
-    return render_template("index.html")
+    pts, ships = get_points_and_schedules()
+    return render_template("index.html", pts=pts, ships=ships)
+
+
+def get_points_and_schedules():
+    conn = pymysql.connect(host='localhost', user='admin_admin', password='Admin1234', database='admin_lct')
+    # Получение точек
+    pts = []
+    with conn.cursor() as cursor:
+        cursor.execute("SELECT * FROM graph")
+        pts = []
+        schema = [column[0] for column in cursor.description]
+        for row in cursor.fetchall():
+            row = dict(zip(schema, row))
+            pts.append({
+                'name': row['point_name'],
+                'id': row['id']
+            })
+    # Получение кораблей
+    ships = []
+    with conn.cursor() as cursor:
+        cursor.execute("SELECT * FROM schedules")
+        pts = []
+        schema = [column[0] for column in cursor.description]
+        for row in cursor.fetchall():
+            row = dict(zip(schema, row))
+            pts.append(row)  # TODO Проверить работоспособность
+
+    # Закрытие соединения
+    conn.close()
+
+    return pts, ships
 
 
 @app.route('/api/getGraph')
