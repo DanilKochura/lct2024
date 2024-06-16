@@ -169,3 +169,9 @@ body { margin: 0; padding: 0; }
     height: 20px; /* Увеличенный размер SVG иконки */
     fill: white;
 }
+
+#aside-main
+{
+    z-index: 10000000;
+    width: 30% !important;
+}
