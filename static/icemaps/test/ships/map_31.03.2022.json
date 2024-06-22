@@ -1,0 +1,1608 @@
+{
+    "0": {
+        "Arc7": {
+            "solo": 270.01664159999996,
+            "provided": 270.01664159999996
+        },
+        "Arc4": {
+            "solo": 270.01664159999996,
+            "provided": 270.01664159999996
+        },
+        "Arc5": {
+            "solo": 270.01664159999996,
+            "provided": 270.01664159999996
+        },
+        "Arc6": {
+            "solo": 270.01664159999996,
+            "provided": 270.01664159999996
+        },
+        "нет": {
+            "solo": 270.01664159999996,
+            "provided": 270.01664159999996
+        }
+    },
+    "1": {
+        "Arc7": {
+            "solo": 397.3054320300001,
+            "provided": 311.8385658375
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 364.30664199428577
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 364.30664199428577
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 364.30664199428577
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 277.1898363
+        }
+    },
+    "2": {
+        "Arc7": {
+            "solo": 93.42456211200002,
+            "provided": 71.528180367
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 80.91234397200002
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 80.91234397200002
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 80.91234397200002
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 58.39035132
+        }
+    },
+    "3": {
+        "Arc7": {
+            "solo": 320.4691429041667,
+            "provided": 262.74488735
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 297.72066780892857
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 297.72066780892857
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 297.72066780892857
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 238.85898849999995
+        }
+    },
+    "4": {
+        "Arc7": {
+            "solo": 104.316058992,
+            "provided": 86.93004916000001
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 104.316058992
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 104.316058992
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 104.316058992
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 86.93004916000001
+        }
+    },
+    "5": {
+        "Arc7": {
+            "solo": 655.3557374000001,
+            "provided": 655.3557374000001
+        },
+        "Arc4": {
+            "solo": 655.3557374000001,
+            "provided": 655.3557374000001
+        },
+        "Arc5": {
+            "solo": 655.3557374000001,
+            "provided": 655.3557374000001
+        },
+        "Arc6": {
+            "solo": 655.3557374000001,
+            "provided": 655.3557374000001
+        },
+        "нет": {
+            "solo": 655.3557374000001,
+            "provided": 655.3557374000001
+        }
+    },
+    "6": {
+        "Arc7": {
+            "solo": 410.5701116,
+            "provided": 410.5701116
+        },
+        "Arc4": {
+            "solo": 410.5701116,
+            "provided": 410.5701116
+        },
+        "Arc5": {
+            "solo": 410.5701116,
+            "provided": 410.5701116
+        },
+        "Arc6": {
+            "solo": 410.5701116,
+            "provided": 410.5701116
+        },
+        "нет": {
+            "solo": 410.5701116,
+            "provided": 410.5701116
+        }
+    },
+    "7": {
+        "Arc7": {
+            "solo": 119.56344919999998,
+            "provided": 119.56344919999998
+        },
+        "Arc4": {
+            "solo": 119.56344919999998,
+            "provided": 119.56344919999998
+        },
+        "Arc5": {
+            "solo": 119.56344919999998,
+            "provided": 119.56344919999998
+        },
+        "Arc6": {
+            "solo": 119.56344919999998,
+            "provided": 119.56344919999998
+        },
+        "нет": {
+            "solo": 119.56344919999998,
+            "provided": 119.56344919999998
+        }
+    },
+    "8": {
+        "Arc7": {
+            "solo": 305.15113865250004,
+            "provided": 237.91444708499998
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 275.59654895250003
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 275.59654895250003
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 275.59654895250003
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 206.88212789999997
+        }
+    },
+    "9": {
+        "Arc7": {
+            "solo": 229.38313283999997,
+            "provided": 191.1526107
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 229.38313283999997
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 229.38313283999997
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 229.38313283999997
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 191.1526107
+        }
+    },
+    "10": {
+        "Arc7": {
+            "solo": 238.19388266666658,
+            "provided": 187.57768259999995
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 229.6869582857142
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 229.6869582857142
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 229.6869582857142
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 178.64541199999994
+        }
+    },
+    "11": {
+        "Arc7": {
+            "solo": 342.95815716666675,
+            "provided": 257.218617875
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 293.96413471428576
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 293.96413471428576
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 293.96413471428576
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 205.77489430000003
+        }
+    },
+    "12": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "13": {
+        "Arc7": {
+            "solo": 196.1906416875,
+            "provided": 174.3916815
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 196.1906416875
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 196.1906416875
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 196.1906416875
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 174.3916815
+        }
+    },
+    "14": {
+        "Arc7": {
+            "solo": 89.99755687999999,
+            "provided": 81.81596080000001
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 89.99755687999999
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 89.99755687999999
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 89.99755687999999
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 81.81596080000001
+        }
+    },
+    "15": {
+        "Arc7": {
+            "solo": 154.60392762499995,
+            "provided": 123.68314209999997
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 154.60392762499995
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 154.60392762499995
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 154.60392762499995
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 123.68314209999997
+        }
+    },
+    "16": {
+        "Arc7": {
+            "solo": 369.36879734999997,
+            "provided": 283.18274463499995
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 334.19081665
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 334.19081665
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 334.19081665
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 246.24586490000002
+        }
+    },
+    "17": {
+        "Arc7": {
+            "solo": 566.2970433333335,
+            "provided": 424.72278250000005
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 485.39746571428583
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 485.39746571428583
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 485.39746571428583
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 339.7782260000001
+        }
+    },
+    "18": {
+        "Arc7": {
+            "solo": 270.59211690000006,
+            "provided": 270.59211690000006
+        },
+        "Arc4": {
+            "solo": 270.59211690000006,
+            "provided": 270.59211690000006
+        },
+        "Arc5": {
+            "solo": 270.59211690000006,
+            "provided": 270.59211690000006
+        },
+        "Arc6": {
+            "solo": 270.59211690000006,
+            "provided": 270.59211690000006
+        },
+        "нет": {
+            "solo": 270.59211690000006,
+            "provided": 270.59211690000006
+        }
+    },
+    "19": {
+        "Arc7": {
+            "solo": 161.69585655999995,
+            "provided": 130.84598918999998
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 158.65646075999996
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 158.65646075999996
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 158.65646075999996
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 127.6546236
+        }
+    },
+    "20": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "21": {
+        "Arc7": {
+            "solo": 278.12275559999995,
+            "provided": 278.12275559999995
+        },
+        "Arc4": {
+            "solo": 278.12275559999995,
+            "provided": 278.12275559999995
+        },
+        "Arc5": {
+            "solo": 278.12275559999995,
+            "provided": 278.12275559999995
+        },
+        "Arc6": {
+            "solo": 278.12275559999995,
+            "provided": 278.12275559999995
+        },
+        "нет": {
+            "solo": 278.12275559999995,
+            "provided": 278.12275559999995
+        }
+    },
+    "22": {
+        "Arc7": {
+            "solo": 325.3226021125,
+            "provided": 277.04892567
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 301.3356821410714
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 301.3356821410714
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 301.3356821410714
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 251.86265969999997
+        }
+    },
+    "23": {
+        "Arc7": {
+            "solo": 375.0398295000001,
+            "provided": 281.27987212500005
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 321.46271100000007
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 321.46271100000007
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 321.46271100000007
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 225.02389770000005
+        }
+    },
+    "24": {
+        "Arc7": {
+            "solo": 228.3029199,
+            "provided": 175.03223859000002
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 206.5597846714286
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 206.5597846714286
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 206.5597846714286
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 152.2019466
+        }
+    },
+    "25": {
+        "Arc7": {
+            "solo": 288.1919175,
+            "provided": 288.1919175
+        },
+        "Arc4": {
+            "solo": 288.1919175,
+            "provided": 288.1919175
+        },
+        "Arc5": {
+            "solo": 288.1919175,
+            "provided": 288.1919175
+        },
+        "Arc6": {
+            "solo": 288.1919175,
+            "provided": 288.1919175
+        },
+        "нет": {
+            "solo": 288.1919175,
+            "provided": 288.1919175
+        }
+    },
+    "26": {
+        "Arc7": {
+            "solo": 130.95711049250002,
+            "provided": 121.82056790000003
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 130.95711049250002
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 130.95711049250002
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 130.95711049250002
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 121.82056790000003
+        }
+    },
+    "27": {
+        "Arc7": {
+            "solo": 315.3047628,
+            "provided": 315.3047628
+        },
+        "Arc4": {
+            "solo": 315.3047628,
+            "provided": 315.3047628
+        },
+        "Arc5": {
+            "solo": 315.3047628,
+            "provided": 315.3047628
+        },
+        "Arc6": {
+            "solo": 315.3047628,
+            "provided": 315.3047628
+        },
+        "нет": {
+            "solo": 315.3047628,
+            "provided": 315.3047628
+        }
+    },
+    "28": {
+        "Arc7": {
+            "solo": 69.16861273,
+            "provided": 69.16861273
+        },
+        "Arc4": {
+            "solo": 69.16861273,
+            "provided": 69.16861273
+        },
+        "Arc5": {
+            "solo": 69.16861273,
+            "provided": 69.16861273
+        },
+        "Arc6": {
+            "solo": 69.16861273,
+            "provided": 69.16861273
+        },
+        "нет": {
+            "solo": 69.16861273,
+            "provided": 69.16861273
+        }
+    },
+    "29": {
+        "Arc7": {
+            "solo": 391.49019133333337,
+            "provided": 293.6176435
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 335.56302114285717
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 335.56302114285717
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 335.56302114285717
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 234.8941148
+        }
+    },
+    "30": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "31": {
+        "Arc7": {
+            "solo": 467.7630527266667,
+            "provided": 362.38785953
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 416.36051946
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 416.36051946
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 416.36051946
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 308.41519960000005
+        }
+    },
+    "32": {
+        "Arc7": {
+            "solo": 97.454952875,
+            "provided": 77.9639623
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 97.454952875
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 97.454952875
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 97.454952875
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 77.9639623
+        }
+    },
+    "33": {
+        "Arc7": {
+            "solo": 445.9281382,
+            "provided": 445.9281382
+        },
+        "Arc4": {
+            "solo": 445.9281382,
+            "provided": 445.9281382
+        },
+        "Arc5": {
+            "solo": 445.9281382,
+            "provided": 445.9281382
+        },
+        "Arc6": {
+            "solo": 445.9281382,
+            "provided": 445.9281382
+        },
+        "нет": {
+            "solo": 445.9281382,
+            "provided": 445.9281382
+        }
+    },
+    "34": {
+        "Arc7": {
+            "solo": 679.8567189425,
+            "provided": 523.52602956
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 596.7573491710714
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 596.7573491710714
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 596.7573491710714
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 436.27169129999993
+        }
+    },
+    "35": {
+        "Arc7": {
+            "solo": 363.3080839,
+            "provided": 275.34928464
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 319.60184824285716
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 319.60184824285716
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 319.60184824285716
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 229.45773720000003
+        }
+    },
+    "36": {
+        "Arc7": {
+            "solo": 297.1508085,
+            "provided": 297.1508085
+        },
+        "Arc4": {
+            "solo": 297.1508085,
+            "provided": 297.1508085
+        },
+        "Arc5": {
+            "solo": 297.1508085,
+            "provided": 297.1508085
+        },
+        "Arc6": {
+            "solo": 297.1508085,
+            "provided": 297.1508085
+        },
+        "нет": {
+            "solo": 297.1508085,
+            "provided": 297.1508085
+        }
+    },
+    "37": {
+        "Arc7": {
+            "solo": 397.5635716208334,
+            "provided": 325.95274195
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 369.34255500178574
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 369.34255500178574
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 369.34255500178574
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 296.3206745
+        }
+    },
+    "38": {
+        "Arc7": {
+            "solo": 504.40161698999987,
+            "provided": 401.6531394549999
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 477.71370074714275
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 477.71370074714275
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 477.71370074714275
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 373.6308273999999
+        }
+    },
+    "39": {
+        "Arc7": {
+            "solo": 372.440335155,
+            "provided": 302.168573805
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 352.362689055
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 352.362689055
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 352.362689055
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 281.08704539999997
+        }
+    },
+    "40": {
+        "Arc7": {
+            "solo": 151.51714503399995,
+            "provided": 118.57863524399997
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 132.69513943971427
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 132.69513943971427
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 132.69513943971427
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 98.81552936999996
+        }
+    },
+    "41": {
+        "Arc7": {
+            "solo": 460.28483269999987,
+            "provided": 460.28483269999987
+        },
+        "Arc4": {
+            "solo": 460.28483269999987,
+            "provided": 460.28483269999987
+        },
+        "Arc5": {
+            "solo": 460.28483269999987,
+            "provided": 460.28483269999987
+        },
+        "Arc6": {
+            "solo": 460.28483269999987,
+            "provided": 460.28483269999987
+        },
+        "нет": {
+            "solo": 460.28483269999987,
+            "provided": 460.28483269999987
+        }
+    },
+    "42": {
+        "Arc7": {
+            "solo": 371.31241188,
+            "provided": 299.65563063999997
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 334.08810993714286
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 334.08810993714286
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 334.08810993714286
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 260.57011359999996
+        }
+    },
+    "43": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "44": {
+        "Arc7": {
+            "solo": 314.1702212458333,
+            "provided": 270.2303301625
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 307.89309394821424
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 307.89309394821424
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 307.89309394821424
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 263.6393465
+        }
+    },
+    "45": {
+        "Arc7": {
+            "solo": 435.638372715,
+            "provided": 355.6231614
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 435.638372715
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 435.638372715
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 435.638372715
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 355.6231614
+        }
+    },
+    "46": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "47": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "48": {
+        "Arc7": {
+            "solo": 272.4007676266667,
+            "provided": 220.42956854000005
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 267.28045244571433
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 267.28045244571433
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 267.28045244571433
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 215.05323760000005
+        }
+    },
+    "49": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "50": {
+        "Arc7": {
+            "solo": 499.99382975000003,
+            "provided": 388.23050309999996
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 466.38079917857146
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 466.38079917857146
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 466.38079917857146
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 352.93682100000007
+        }
+    },
+    "51": {
+        "Arc7": {
+            "solo": 134.9232936641667,
+            "provided": 111.37963168250002
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 132.33607806178574
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 132.33607806178574
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 132.33607806178574
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 108.66305530000002
+        }
+    },
+    "52": {
+        "Arc7": {
+            "solo": 414.69122509999994,
+            "provided": 414.69122509999994
+        },
+        "Arc4": {
+            "solo": 414.69122509999994,
+            "provided": 414.69122509999994
+        },
+        "Arc5": {
+            "solo": 414.69122509999994,
+            "provided": 414.69122509999994
+        },
+        "Arc6": {
+            "solo": 414.69122509999994,
+            "provided": 414.69122509999994
+        },
+        "нет": {
+            "solo": 414.69122509999994,
+            "provided": 414.69122509999994
+        }
+    },
+    "53": {
+        "Arc7": {
+            "solo": 499.3868175083334,
+            "provided": 420.7162914625001
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 489.6140813535715
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 489.6140813535715
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 489.6140813535715
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 410.45491850000013
+        }
+    },
+    "54": {
+        "Arc7": {
+            "solo": 331.72581410249995,
+            "provided": 279.6903922825
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 313.1417348810714
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 313.1417348810714
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 313.1417348810714
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 260.1771091
+        }
+    },
+    "55": {
+        "Arc7": {
+            "solo": 198.55827241999995,
+            "provided": 179.98807427999995
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 190.3955479628571
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 190.3955479628571
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 190.3955479628571
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 171.41721359999994
+        }
+    },
+    "56": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "57": {
+        "Arc7": {
+            "solo": 401.12090313333334,
+            "provided": 313.92070679999995
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 351.2922195142857
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 351.2922195142857
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 351.2922195142857
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 261.600589
+        }
+    },
+    "58": {
+        "Arc7": {
+            "solo": 586.67932575,
+            "provided": 460.47505218749995
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 537.9518069999999
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 537.9518069999999
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 537.9518069999999
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 409.3111575
+        }
+    },
+    "59": {
+        "Arc7": {
+            "solo": 418.92214684833334,
+            "provided": 342.75448378500005
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 403.3777258150001
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 403.3777258150001
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 403.3777258150001
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 326.4328417000001
+        }
+    },
+    "60": {
+        "Arc7": {
+            "solo": 220.19944983750003,
+            "provided": 195.7328443
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 220.19944983750003
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 220.19944983750003
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 220.19944983750003
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 195.7328443
+        }
+    },
+    "61": {
+        "Arc7": {
+            "solo": 156.0644819,
+            "provided": 156.0644819
+        },
+        "Arc4": {
+            "solo": 156.0644819,
+            "provided": 156.0644819
+        },
+        "Arc5": {
+            "solo": 156.0644819,
+            "provided": 156.0644819
+        },
+        "Arc6": {
+            "solo": 156.0644819,
+            "provided": 156.0644819
+        },
+        "нет": {
+            "solo": 156.0644819,
+            "provided": 156.0644819
+        }
+    },
+    "62": {
+        "Arc7": {
+            "solo": 64.659720575,
+            "provided": 50.206371270000005
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 60.312848603571425
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 60.312848603571425
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 60.312848603571425
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 45.64215570000001
+        }
+    },
+    "63": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "64": {
+        "Arc7": {
+            "solo": 456.26762390000005,
+            "provided": 456.26762390000005
+        },
+        "Arc4": {
+            "solo": 456.26762390000005,
+            "provided": 456.26762390000005
+        },
+        "Arc5": {
+            "solo": 456.26762390000005,
+            "provided": 456.26762390000005
+        },
+        "Arc6": {
+            "solo": 456.26762390000005,
+            "provided": 456.26762390000005
+        },
+        "нет": {
+            "solo": 456.26762390000005,
+            "provided": 456.26762390000005
+        }
+    },
+    "65": {
+        "Arc7": {
+            "solo": 145.18263639999998,
+            "provided": 145.18263639999998
+        },
+        "Arc4": {
+            "solo": 145.18263639999998,
+            "provided": 145.18263639999998
+        },
+        "Arc5": {
+            "solo": 145.18263639999998,
+            "provided": 145.18263639999998
+        },
+        "Arc6": {
+            "solo": 145.18263639999998,
+            "provided": 145.18263639999998
+        },
+        "нет": {
+            "solo": 145.18263639999998,
+            "provided": 145.18263639999998
+        }
+    },
+    "66": {
+        "Arc7": {
+            "solo": 402.0048300625,
+            "provided": 310.1180117625
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 369.1881092410714
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 369.1881092410714
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 369.1881092410714
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 275.6604549
+        }
+    },
+    "67": {
+        "Arc7": {
+            "solo": 165.05694136,
+            "provided": 133.56581438999999
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 161.9543672742857
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 161.9543672742857
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 161.9543672742857
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 130.3081116
+        }
+    },
+    "68": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "69": {
+        "Arc7": {
+            "solo": 329.91727538249995,
+            "provided": 280.7806599
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 329.91727538249995
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 329.91727538249995
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 329.91727538249995
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 280.7806599
+        }
+    },
+    "70": {
+        "Arc7": {
+            "solo": 227.2269304,
+            "provided": 227.2269304
+        },
+        "Arc4": {
+            "solo": 227.2269304,
+            "provided": 227.2269304
+        },
+        "Arc5": {
+            "solo": 227.2269304,
+            "provided": 227.2269304
+        },
+        "Arc6": {
+            "solo": 227.2269304,
+            "provided": 227.2269304
+        },
+        "нет": {
+            "solo": 227.2269304,
+            "provided": 227.2269304
+        }
+    },
+    "71": {
+        "Arc7": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": Infinity
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": Infinity
+        }
+    },
+    "72": {
+        "Arc7": {
+            "solo": 475.13252250000005,
+            "provided": 356.349391875
+        },
+        "Arc4": {
+            "solo": Infinity,
+            "provided": 407.2564478571429
+        },
+        "Arc5": {
+            "solo": Infinity,
+            "provided": 407.2564478571429
+        },
+        "Arc6": {
+            "solo": Infinity,
+            "provided": 407.2564478571429
+        },
+        "нет": {
+            "solo": Infinity,
+            "provided": 285.0795135
+        }
+    }
+}
