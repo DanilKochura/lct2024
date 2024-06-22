@@ -88,47 +88,60 @@ def solve_schedules_bot(sname, sclass, sspeed, sdep, sdest, sdate):
             return lon + 360 if lon < 0 else lon
 
         # points_df['longitude'] = points_df['longitude'].apply(transform_longitude)
-
-        icebreakers = [
-            {
-                'id': 1,
-                'iceClass': 'Arc91',
-                'name': '50 лет Победы',
-                'startPosition': 27,
-                'startTime': "2022-02-27 00:00:00",
-                'speed': 22,
+        icebreakers = []
+        result, schema = db.query("SELECT * from icebreakers")
+        for row in result:
+            row = dict(zip(schema, row))
+            icebreakers.append({
+                'id': row['id'],
+                'name': row['name'],
+                'ice_class': row['ice_class'],
+                'startPosition': row['start_point'],
+                'startTime': row['start_time'],
+                'speed': row['speed'],
                 'weights': {}
-            },
-            {
-                'id': 2,
-                'iceClass': 'Arc91',
-                'name': 'Ямал',
-                'startPosition': 41,
-                'startTime': "2022-02-27 00:00:00",
-                'speed': 21,
-                'weights': {}
-            },
-            {
-                'id': 3,
-                'iceClass': 'Arc92',
-                'name': 'Таймыр',
-                'startPosition': 16,
-                'startTime': "2022-02-27 00:00:00",
-                'speed': 18.5,
-                'weights': {}
-            },
-            {
-                'id': 4,
-                'iceClass': 'Arc92',
-                'name': 'Вайгач',
-                'startPosition': 6,
-                'startTime': "2022-02-27 00:00:00",
-                'speed': 18.5,
-                'weights': {}
-            },
-        ]
+            })
+        # icebreakers = [
+        #     {
+        #         'id': 1,
+        #         'iceClass': 'Arc91',
+        #         'name': '50 лет Победы',
+        #         'startPosition': 27,
+        #         'startTime': "2022-02-27 00:00:00",
+        #         'speed': 22,
+        #         'weights': {}
+        #     },
+        #     {
+        #         'id': 2,
+        #         'iceClass': 'Arc91',
+        #         'name': 'Ямал',
+        #         'startPosition': 41,
+        #         'startTime': "2022-02-27 00:00:00",
+        #         'speed': 21,
+        #         'weights': {}
+        #     },
+        #     {
+        #         'id': 3,
+        #         'iceClass': 'Arc92',
+        #         'name': 'Таймыр',
+        #         'startPosition': 16,
+        #         'startTime': "2022-02-27 00:00:00",
+        #         'speed': 18.5,
+        #         'weights': {}
+        #     },
+        #     {
+        #         'id': 4,
+        #         'iceClass': 'Arc92',
+        #         'name': 'Вайгач',
+        #         'startPosition': 6,
+        #         'startTime': "2022-02-27 00:00:00",
+        #         'speed': 18.5,
+        #         'weights': {}
+        #     },
+        # ]
 
         # Функция для расчета времени в пути с учетом скорости судна
+
         def calculate_travel_time(length, speed):
             return length
 

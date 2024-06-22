@@ -3,7 +3,6 @@ import re
 from flask import Flask, render_template, request, redirect
 import pymysql
 import json
-
 import solver.solver
 
 app = Flask(__name__)
@@ -11,8 +10,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def main_processor():
-    pts, ships = get_points_and_schedules()
-    return render_template("index.html", pts=pts, ships=ships)
+    pts, ships, icebreakers = get_points_and_schedules()
+    return render_template("index.html", pts=pts, ships=ships, icebreakers=icebreakers)
 
 
 def get_points_and_schedules():
@@ -36,11 +35,17 @@ def get_points_and_schedules():
             row = dict(zip(schema, row))
             pts.append(row)
 
-
+    icebreakers = []
+    with conn.cursor() as cursor:
+        cursor.execute("SELECT * FROM icebreakers")
+        schema = [column[0] for column in cursor.description]
+        for row in cursor.fetchall():
+            row = dict(zip(schema, row))
+            icebreakers.append(row)
     # Закрытие соединения
     conn.close()
 
-    return pts, ships
+    return pts, ships, icebreakers
 
 
 @app.route('/api/getGraph')
