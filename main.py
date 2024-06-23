@@ -98,8 +98,14 @@ def get_points_and_edges():
 @app.route("/api/refresh-routes", methods=['POST', 'GET'])
 def refresh_routes():
     print("request.form: ", request.form)
-    current, extended = parse_form(data=request.form)
+    current, extended, current_ib, extended_ib = parse_form(data=request.form)
+
+    print("current_ib", current_ib)
+    print("extended_ib", extended_ib)
+
     print("parse_form(data=request.form): ", parse_form(data=request.form))
+
+    # exit()
     conn = pymysql.connect(host='localhost', user='admin_admin', password='Admin1234', database='admin_lct')
     with conn.cursor() as cursor:
         for ship in current:  # Для старых кораблей обновляем данные.
@@ -128,6 +134,33 @@ def refresh_routes():
             """
             print("query", query)
             cursor.execute(query)
+
+        for ship in current_ib:
+            query = f"""
+                UPDATE 
+                    icebreakers
+                SET 
+                    name="{ship['name']}", 
+                    speed={ship['speed']}, 
+                    start_point={ship['start_point']}, 
+                    ice_class="{ship['ice_class']}", 
+                    start_time="{ship['start_time']}",
+                    status={ship.get('status', 0)} 
+                WHERE 
+                    id={ship['id']}
+            """
+            # print(query)
+            cursor.execute(query)
+
+        for ship in extended_ib:  # Новые корабли заносим в базу.
+            print("ship", ship)
+            query = f"""
+                INSERT INTO icebreakers (name, speed, start_point, ice_class, start_time, status) 
+                VALUES ("{ship['name']}", {ship['speed']}, {ship['start_point']}, "{ship['ice_class']}", "{ship['start_time']}", {ship.get('status', 0)})
+            """
+            print("query", query)
+            cursor.execute(query)
+
     conn.commit()
     conn.close()
     solver.solver.solve_schedules()
@@ -161,7 +194,31 @@ def parse_form(data):
             data_dict_extended[index][dict_key] = value
     extended = [data_dict_extended[index] for index in sorted(data_dict_extended.keys())]
 
-    return current, extended
+    pattern = re.compile(r'current_ib\[(\d+)\]\[(.*?)\]')
+    data_dict_current_ib = {}
+    for key, value in data.items():
+        match = pattern.search(key)
+        if match:
+            index = int(match.group(1))
+            dict_key = match.group(2)
+            if index not in data_dict_current_ib:
+                data_dict_current_ib[index] = {}
+            data_dict_current_ib[index][dict_key] = value
+    current_ib = [data_dict_current_ib[index] for index in sorted(data_dict_current_ib.keys())]
+
+    pattern = re.compile(r'extended_ib\[(\d+)\]\[(.*?)\]')
+    data_dict_extended_ib = {}
+    for key, value in data.items():
+        match = pattern.search(key)
+        if match:
+            index = int(match.group(1))
+            dict_key = match.group(2)
+            if index not in data_dict_extended_ib:
+                data_dict_extended_ib[index] = {}
+            data_dict_extended_ib[index][dict_key] = value
+    extended_ib = [data_dict_extended_ib[index] for index in sorted(data_dict_extended_ib.keys())]
+
+    return current, extended, current_ib, extended_ib
 
 
 
