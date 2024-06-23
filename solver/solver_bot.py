@@ -101,44 +101,44 @@ def solve_schedules_bot(sname, sclass, sspeed, sdep, sdest, sdate):
                 'speed': row['speed'],
                 'weights': {}
             })
-        # icebreakers = [
-        #     {
-        #         'id': 1,
-        #         'iceClass': 'Arc91',
-        #         'name': '50 лет Победы',
-        #         'startPosition': 27,
-        #         'startTime': "2022-02-27 00:00:00",
-        #         'speed': 22,
-        #         'weights': {}
-        #     },
-        #     {
-        #         'id': 2,
-        #         'iceClass': 'Arc91',
-        #         'name': 'Ямал',
-        #         'startPosition': 41,
-        #         'startTime': "2022-02-27 00:00:00",
-        #         'speed': 21,
-        #         'weights': {}
-        #     },
-        #     {
-        #         'id': 3,
-        #         'iceClass': 'Arc92',
-        #         'name': 'Таймыр',
-        #         'startPosition': 16,
-        #         'startTime': "2022-02-27 00:00:00",
-        #         'speed': 18.5,
-        #         'weights': {}
-        #     },
-        #     {
-        #         'id': 4,
-        #         'iceClass': 'Arc92',
-        #         'name': 'Вайгач',
-        #         'startPosition': 6,
-        #         'startTime': "2022-02-27 00:00:00",
-        #         'speed': 18.5,
-        #         'weights': {}
-        #     },
-        # ]
+        icebreakers = [
+            {
+                'id': 1,
+                'iceClass': 'Arc91',
+                'name': '50 лет Победы',
+                'startPosition': 27,
+                'startTime': "2022-02-27 00:00:00",
+                'speed': 22,
+                'weights': {}
+            },
+            {
+                'id': 2,
+                'iceClass': 'Arc91',
+                'name': 'Ямал',
+                'startPosition': 41,
+                'startTime': "2022-02-27 00:00:00",
+                'speed': 21,
+                'weights': {}
+            },
+            {
+                'id': 3,
+                'iceClass': 'Arc92',
+                'name': 'Таймыр',
+                'startPosition': 16,
+                'startTime': "2022-02-27 00:00:00",
+                'speed': 18.5,
+                'weights': {}
+            },
+            {
+                'id': 4,
+                'iceClass': 'Arc92',
+                'name': 'Вайгач',
+                'startPosition': 6,
+                'startTime': "2022-02-27 00:00:00",
+                'speed': 18.5,
+                'weights': {}
+            },
+        ]
 
         # Функция для расчета времени в пути с учетом скорости судна
 
@@ -340,7 +340,7 @@ def solve_schedules_bot(sname, sclass, sspeed, sdep, sdest, sdate):
         nearest_icebreaker = None
         nearest_port = None
         total_to_end = 0
-
+        time_to_port = float('inf')
         for start_port, icebreaker in icebreaker_queue.items():
             if icebreaker:
                 test = start_port
@@ -815,6 +815,7 @@ def solve_schedules_bot(sname, sclass, sspeed, sdep, sdest, sdate):
                             "date": ship_new_time.strftime("%Y-%m-%d %H:%M:%S"),
                             "time": edge_time,
                             "provided": True,
+                            "provider": icebreaker['name'],
                             "waiting": False
                         })
                     ship_requests.appendleft({
@@ -868,6 +869,7 @@ def solve_schedules_bot(sname, sclass, sspeed, sdep, sdest, sdate):
                                 "date": ship_current_time.strftime("%Y-%m-%d %H:%M:%S"),
                                 "time": wait[0]['time'],
                                 "provided": True,
+                                "provider": icebreaker['name'],
                                 "waiting": True
                             })
 
@@ -899,6 +901,7 @@ def solve_schedules_bot(sname, sclass, sspeed, sdep, sdest, sdate):
                             "date": ship_current_time.strftime("%Y-%m-%d %H:%M:%S"),
                             "time": travel_time,
                             "provided": True,
+                            "provider": icebreaker['name'],
                             "waiting": False
                         })
                         dprint("Фикссирую ледокол в точке " + points[str(point)]["name"], ship_current_time)
@@ -1105,9 +1108,9 @@ def solve_schedules_bot(sname, sclass, sspeed, sdep, sdest, sdate):
         # Настройка осей
         ax.xaxis_date()
         ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d %H:%M"))
-        ax.set_xlabel('Time')
-        ax.set_ylabel('Ships and Icebreakers')
-        ax.set_title('Gantt Chart of Ship and Icebreaker Routes')
+        ax.set_xlabel('Дата')
+        ax.set_ylabel('Корабль')
+        ax.set_title('Диаграмма ганта для корабля '+all_routes[0]['name'])
         plt.xticks(rotation=45)
         plt.tight_layout()
 
@@ -1145,7 +1148,7 @@ def solve_schedules_bot(sname, sclass, sspeed, sdep, sdest, sdate):
             else:
                 tmp += f"Плывем {math.floor(route['time'])} часов\n"
                 if route['provided']:
-                    tmp += f"Под проводкой\n"
+                    tmp += f"Под проводкой {route['provider']} \n"
 
             tmp += f"____________________\n\n"
             route_arrays.append(tmp)

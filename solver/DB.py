@@ -3,9 +3,9 @@ import pymysql
 class DB:
     def __init__(self):
         self.host = "localhost"
-        self.user = "admin_admin"
-        self.password = "Admin1234"
-        self.database = "admin_lct"
+        self.user = "root"
+        self.password = ""
+        self.database = "hackathon"
         self.connection = None
 
         # Establish a connection to the MySQL database
