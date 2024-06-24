@@ -451,7 +451,7 @@ $(document).ready(function () {
         $('#speed-5x').addClass('btn-dark')
     });
     $('#speed-10x').click(() => {
-        speedMultiplier = 10
+        speedMultiplier = 20
         $('.btn-speed').removeClass('btn-dark')
         $('#speed-10x').addClass('btn-dark')
 

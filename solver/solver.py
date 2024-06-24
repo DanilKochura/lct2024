@@ -25,7 +25,7 @@ def solve_schedules():
     HOURS_FOR_WAIT = 36
 
     test = '/test'
-    test = ''
+    # test = ''
 
     def get_all_data():
         # Установите локаль на русскую
@@ -49,7 +49,6 @@ def solve_schedules():
             port_name_to_id[row['id']] = [row['longitude'], row['latitude']]
             points.append(row)
         print(schedule_df)
-
         # Загрузка данных из файла Excel
         # file_path_graph = 'data/1ГрафДанные.xlsx'
         # file_path_schedule = 'data/Расписание.xlsx'
@@ -85,44 +84,61 @@ def solve_schedules():
 
         # points_df['longitude'] = points_df['longitude'].apply(transform_longitude)
 
-        icebreakers = [
-            {
-                'id': 1,
-                'iceClass': 'Arc91',
-                'name': '50 лет Победы',
-                'startPosition': 27,
-                'startTime': "2022-02-27 00:00:00",
-                'speed': 22,
+        icebreakers = []
+        result, schema = db.query("SELECT * from icebreakers where status = 1")
+        for row in result:
+            row = dict(zip(schema, row))
+            icebreakers.append({
+                'id': row['id'],
+                'name': row['name'],
+                'iceClass': row['ice_class'],
+                'startPosition': row['start_point'],
+                'startTime': row['start_time'],
+                'speed': row['speed'],
+                'route': [],
                 'weights': {}
-            },
-            {
-                'id': 2,
-                'iceClass': 'Arc91',
-                'name': 'Ямал',
-                'startPosition': 41,
-                'startTime': "2022-02-27 00:00:00",
-                'speed': 21,
-                'weights': {}
-            },
-            {
-                'id': 3,
-                'iceClass': 'Arc92',
-                'name': 'Таймыр',
-                'startPosition': 16,
-                'startTime': "2022-02-27 00:00:00",
-                'speed': 18.5,
-                'weights': {}
-            },
-            {
-                'id': 4,
-                'iceClass': 'Arc92',
-                'name': 'Вайгач',
-                'startPosition': 6,
-                'startTime': "2022-02-27 00:00:00",
-                'speed': 18.5,
-                'weights': {}
-            },
-        ]
+            })
+
+        # icebreakers = [
+        #     {
+        #         'id': 1,
+        #         'iceClass': 'Arc91',
+        #         'name': '50 лет Победы',
+        #         'startPosition': 27,
+        #         'startTime': "2022-02-27 00:00:00",
+        #         'speed': 22,
+        #         'weights': {}
+        #     },
+        #     {
+        #         'id': 2,
+        #         'iceClass': 'Arc91',
+        #         'name': 'Ямал',
+        #         'startPosition': 41,
+        #         'startTime': "2022-02-27 00:00:00",
+        #         'speed': 21,
+        #         'weights': {}
+        #     },
+        #     {
+        #         'id': 3,
+        #         'iceClass': 'Arc92',
+        #         'name': 'Таймыр',
+        #         'startPosition': 16,
+        #         'startTime': "2022-02-27 00:00:00",
+        #         'speed': 18.5,
+        #         'weights': {}
+        #     },
+        #     {
+        #         'id': 4,
+        #         'iceClass': 'Arc92',
+        #         'name': 'Вайгач',
+        #         'startPosition': 6,
+        #         'startTime': "2022-02-27 00:00:00",
+        #         'speed': 18.5,
+        #         'weights': {}
+        #     },
+        # ]
+
+        # Функция для расчета времени в пути с учетом скорости судна
 
         # Функция для расчета времени в пути с учетом скорости судна
         def calculate_travel_time(length, speed):
@@ -213,7 +229,6 @@ def solve_schedules():
         Returns:
         - list: Кратчайший путь от source до target.
         """
-
         # Функция для вычисления веса ребра
         def get_edge_weight(u, v, data):
             edge_id = data['id']  # Предполагаем, что идентификатор ребра хранится в атрибуте 'id'
@@ -315,7 +330,7 @@ def solve_schedules():
                 times[ship["id"]] += ship['weights'][get_weights_period(date)][edge_id][key]
         return times
 
-    def find_nearest_icebreaker(port, endpoint, icebreaker_queue):
+    def find_nearest_icebreaker(port, endpoint, icebreaker_queue, ship):
         """
         Находит ближайший ледокол к указанному порту.
         """
@@ -323,6 +338,7 @@ def solve_schedules():
         nearest_icebreaker = None
         nearest_port = None
         total_to_end = 0
+        time_for_ship = float('inf')
 
         for start_port, icebreaker in icebreaker_queue.items():
             if icebreaker:
@@ -337,8 +353,14 @@ def solve_schedules():
                 time_to_port = 0
                 time_to_port = dynamic_weight_shortest_path_length(G, start_port, port, weights_ice)
                 if (time_to_port == float('inf')): continue
-                time_to_end = dynamic_weight_shortest_path_length(G, start_port, endpoint, weights_ice)
+                time_to_end = dynamic_weight_shortest_path_length(G, port, endpoint, weights_ice)
+
+                time_slice = get_weights_period(icebreaker[0]['startTimestamp']+timedelta(time_to_port))
+                weights_ice = {}
+                for eid, weights in ship['weights'][time_slice].items():
+                    weights_ice[str(eid)] = weights['provided']
                 # if(time_to_end == float('inf')): continue
+                time_for_ship = dynamic_weight_shortest_path_length(G, port, endpoint, weights_ice)
 
                 distance = datetime.strptime(icebreaker[0]['startTime'], "%Y-%m-%d %H:%M:%S") + timedelta(
                     hours=time_to_port)
@@ -350,8 +372,9 @@ def solve_schedules():
                     nearest_icebreaker = icebreaker[0]
                     nearest_port = start_port
                     total_to_end = time_to_end
+                    time_for_ship = time_for_ship
 
-        return nearest_icebreaker, nearest_port, min_distance, time_to_port, total_to_end
+        return nearest_icebreaker, nearest_port, min_distance, time_to_port, total_to_end, time_for_ship
 
     # Перемещаем ледокол от начальной точки до конечной, обновляя маршрут и время
     def move_icebreaker(icebreaker, start, end):
@@ -484,9 +507,8 @@ def solve_schedules():
 
         # Добавляем ледоколы в их начальные позиции в очереди
         for icebreaker in icebreakers_data:
-            if ' ' not in icebreaker['startTime']:
-                icebreaker['startTime'] += " 00:00:00"
-            icebreaker['startTimestamp'] = datetime.strptime(icebreaker['startTime'], "%Y-%m-%d %H:%M:%S")
+            icebreaker['startTimestamp'] = icebreaker['startTime']
+            icebreaker['startTime'] = icebreaker['startTime'].strftime("%Y-%m-%d %H:%M:%S")
             icebreaker_queue[icebreaker['startPosition']].append(icebreaker)
             ice_times[icebreaker['id']] = icebreaker['startTime']
 
@@ -564,9 +586,9 @@ def solve_schedules():
             if ship_start in icebreaker_queue and icebreaker_queue[ship_start] and False:
                 icebreaker = icebreaker_queue[ship_start].popleft()
             else:
-                icebreaker, nearest_port, time_for_icebreaker, time_to_port, total_to_end = find_nearest_icebreaker(
+                icebreaker, nearest_port, time_for_icebreaker, time_to_port, total_to_end, time_for_ship = find_nearest_icebreaker(
                     ship_start, ship_end,
-                    icebreaker_queue)
+                    icebreaker_queue, ship)
 
                 # if(total_to_end == float('inf')):
                 #     dprint("Не, мы не доплывем")
@@ -581,13 +603,17 @@ def solve_schedules():
                 #     })
                 #     continue
                 dprint("Пытаюсь понять, могу ли я двигаться самостоятельно")
-                path_to_destination_1 = nx.shortest_path(G, source=ship_start, target=ship_end, weight='weight')
+                weights_ice = {}
+                for eid, weights in ship['weights'][get_weights_period(ship_current_time)].items():
+                    weights_ice[str(eid)] = weights['solo']
+                path_to_destination_1 = dynamic_weight_shortest_path(G, ship_start, ship_end, weights_ice)
 
                 idx_1 = 1
                 point = path_to_destination_1[idx_1]
                 prev_point = path_to_destination_1[idx_1 - 1]
                 edge_id = G.get_edge_data(prev_point, point)['id']
                 solo_weight = ship["weights"][get_weights_period(ship_current_time)][edge_id]["solo"]
+                prov_weight = ship["weights"][get_weights_period(ship_current_time)][edge_id]["provided"]
                 dprint("Самовольно: " + points[str(prev_point)]['name'] + " " + points[str(point)]['name'] + " " + str(
                     solo_weight))
                 clear = float(edges[str(edge_id)]['length']) / ship['speed'] == solo_weight
@@ -622,9 +648,31 @@ def solve_schedules():
                         continue
 
                     # if icebreaker:
-
+                if prov_weight == float('inf'):
+                    queue.add({
+                        "name": ship_name,
+                        "start": prev_point,
+                        "id": ship['id'],
+                        "end": ship_end,
+                        "departure_time": ship_departure_time+timedelta(hours=24),
+                        "current_time": ship_departure_time+timedelta(hours=24),
+                        "route": ship_route
+                    })
+                    ship_routes[ship_name]["route"].append({
+                        "port": prev_point,
+                        "coords": points[str(prev_point)]["coords"],
+                        "port_name": points[str(prev_point)]["name"],
+                        "date": (ship_departure_time+timedelta(hours=24)).strftime("%Y-%m-%d %H:%M:%S"),
+                        "time": 24,
+                        "provided": False,
+                        "waiting": True
+                    })
+                    total_ships_time += solo_weight
+                    dprint("INFINITE_ROUTE")
+                    continue
             if icebreaker:
                 dprint("Ледокол нашелся - " + icebreaker['name'])
+                dprint(total_to_end)
                 icebreaker_queue[nearest_port].remove(icebreaker)
                 icebreaker = move_icebreaker(icebreaker, nearest_port, ship_start)
                 if 'route' not in icebreaker:
@@ -643,6 +691,7 @@ def solve_schedules():
                 icebreaker_start_time = icebreaker['startTime']
                 if isinstance(icebreaker_start_time, str):
                     icebreaker_start_time = datetime.strptime(icebreaker['startTime'], "%Y-%m-%d %H:%M:%S")
+                icebreaker_time = icebreaker_start_time
 
                 if icebreaker_start_time < ship_departure_time:
                     waiting_time = (ship_departure_time - icebreaker_start_time).total_seconds() / 3600
@@ -676,9 +725,13 @@ def solve_schedules():
                     ship_departure_time = icebreaker_start_time
 
                 dprint("Начинаю просчитывать совместный маршрут", icebreaker_start_time)
-                path_to_destination = nx.shortest_path(G, source=ship_start, target=ship_end, weight='weight')
-                path_to_destination = dynamic_weight_shortest_path(G, ship_start, ship_end, ship['weights'][
-                    get_weights_period(ship_current_time)])
+                # path_to_destination = nx.shortest_path(G, source=ship_start, target=ship_end, weight='weight')
+                weights_ice = {}
+                dprint(get_weights_period(ship_current_time))
+                for eid, weights in ship['weights'][get_weights_period(ship_current_time)].items():
+                    weights_ice[str(eid)] = weights['provided']
+                path_to_destination = dynamic_weight_shortest_path(G, ship_start, ship_end, weights_ice)
+                time1 = dynamic_weight_shortest_path_length(G, 8, 47, weights_ice)
 
                 # region Поиски сдуен в караван
                 efficient = []
@@ -822,6 +875,9 @@ def solve_schedules():
                 ### endregion
 
                 icebreaker_point = False
+                dprint([points[str(pt)]['name'] for pt in path_to_destination])
+                dprint([str(pt) for pt in path_to_destination])
+                cont = False
                 for idx, point in enumerate(path_to_destination):
                     ship_current_time = max(ship_current_time, icebreaker_start_time)
                     if idx == 0:
@@ -861,6 +917,7 @@ def solve_schedules():
                     ship_provided_weight = ship["weights"][get_weights_period(ship_current_time)][edge_id]["provided"]
                     icebreaker_provided_weight = icebreaker["weights"][get_weights_period(ship_current_time)][edge_id][
                         "solo"]
+                    dprint((ship_provided_weight, icebreaker_provided_weight))
                     travel_time = max(ship_provided_weight, icebreaker_provided_weight)
                     extended_convoy = []
                     if (met):
@@ -873,6 +930,11 @@ def solve_schedules():
                     dprint(str(prev_point) + " " + str(edge_id) + " " + str(travel_time), ship_current_time)
                     if len(wait) > 0 and point == wait[0]['id']:
                         met = True
+
+                    elif travel_time == float('inf'):
+                        cont = True
+                        dprint("Встряли вместе")
+                        break
                     if ship_solo_weight > travel_time:
                         ship_current_time += timedelta(hours=travel_time)
                         ship_routes[ship_name]["route"].append({
@@ -896,9 +958,7 @@ def solve_schedules():
                         icebreaker_time = ship_current_time
                         icebreaker_point = point
 
-                    elif travel_time == float('inf'):
 
-                        break
                     else:
                         ship_current_time += timedelta(hours=ship_solo_weight)
                         ship_routes[ship_name]["route"].append({
@@ -911,6 +971,36 @@ def solve_schedules():
                             "waiting": False
                         })
                         break
+
+                # region Если встряли на маршруте
+                if cont:
+                    dprint("", icebreaker_time)
+                    dprint("", ship_current_time)
+                    dprint(points[str(prev_point)]['name'], ship_current_time)
+                    icebreaker['startTime'] = ship_current_time.strftime("%Y-%m-%d %H:%M:%S")
+                    ship_current_time += timedelta(days=1)
+                    ship_current_time += timedelta(days=1)
+                    ship_routes[ship_name]["route"].append({
+                        "port": prev_point,
+                        "coords": points[str(prev_point)]["coords"],
+                        "port_name": points[str(prev_point)]["name"],
+                        "date": ship_current_time.strftime("%Y-%m-%d %H:%M:%S"),
+                        "time": 24,
+                        "provided": False,
+                        "waiting": True
+                    })
+                    queue.add({
+                        "name": ship_name,
+                        "start": prev_point,
+                        "id": ship['id'],
+                        "end": ship_end,
+                        "departure_time": request['departure_time'] + timedelta(days=1),
+                        "current_time": request['current_time'] + timedelta(days=1),
+                        "route": ship_route
+                    })
+                    icebreaker_queue[prev_point].append(icebreaker)
+                    continue
+                # endregion
 
                 dprint("Начинаю просчитывать самостоятельный маршрут", ship_current_time)
                 prev_point = path_to_destination[idx - 1]

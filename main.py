@@ -15,7 +15,7 @@ def main_processor():
 
 
 def get_points_and_schedules():
-    conn = pymysql.connect(host='localhost', user='admin_admin', password='Admin1234', database='admin_lct')
+    conn = pymysql.connect(host='localhost', user='root', password='', database='admin_lct')
 
     # Получение кораблей
     ships = []
@@ -51,7 +51,7 @@ def get_points_and_schedules():
 @app.route('/api/getGraph')
 def get_points_and_edges():
     # Подключение к базе данных
-    conn = pymysql.connect(host='localhost', user='admin_admin', password='Admin1234', database='admin_lct')
+    conn = pymysql.connect(host='localhost', user='root', password='', database='admin_lct')
     # conn = pymysql.connect(host='localhost', user='root', password='mJve9nuhEI', database='admin_lct')
 
     # Получение точек
@@ -106,7 +106,7 @@ def refresh_routes():
     print("parse_form(data=request.form): ", parse_form(data=request.form))
 
     # exit()
-    conn = pymysql.connect(host='localhost', user='admin_admin', password='Admin1234', database='admin_lct')
+    conn = pymysql.connect(host='localhost', user='root', password='', database='admin_lct')
     with conn.cursor() as cursor:
         for ship in current:  # Для старых кораблей обновляем данные.
             query = f"""

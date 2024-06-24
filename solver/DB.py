@@ -5,7 +5,7 @@ class DB:
         self.host = "localhost"
         self.user = "root"
         self.password = ""
-        self.database = "hackathon"
+        self.database = "admin_lct"
         self.connection = None
 
         # Establish a connection to the MySQL database

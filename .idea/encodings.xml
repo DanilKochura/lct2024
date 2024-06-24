@@ -2,5 +2,35 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/backend/ships.json" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/static/icemaps" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_02.04.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_03.03.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_05.05.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_07.04.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_10.03.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_12.05.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_14.04.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_17.03.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_19.05.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_21.04.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_24.03.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_26.05.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_28.04.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/icebreakers/map_31.03.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_02.04.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_03.03.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_05.05.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_07.04.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_10.03.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_12.05.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_14.04.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_17.03.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_19.05.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_21.04.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_24.03.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_26.05.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_28.04.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/icemaps/old/test/ships/map_31.03.2022.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/static/test/ships.json" charset="windows-1251" />
   </component>
 </project>

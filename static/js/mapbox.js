@@ -149,8 +149,8 @@ map.on('load', function () {
                     ['linear'],
                     ['get', 'density'],
                     0, 'rgba(1,16,14,0.1)',
-                    7, '#8f1b44',
-                    12, '#AA5E79',
+                    9.5, '#781638',
+                    12, '#8d2b4d',
                     15, '#A2719B',
                     17, '#8B88B6',
                     19, '#669EC4',
@@ -451,7 +451,7 @@ $(document).ready(function () {
         $('#speed-5x').addClass('btn-dark')
     });
     $('#speed-10x').click(() => {
-        speedMultiplier = 10
+        speedMultiplier = 20
         $('.btn-speed').removeClass('btn-dark')
         $('#speed-10x').addClass('btn-dark')
 
